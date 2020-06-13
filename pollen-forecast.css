@@ -1,0 +1,40 @@
+/* The basic container */
+.pollen-container {
+  overflow: hidden;
+
+  /* To make the height of the container exact. */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  font-size: 20px;
+  color: lightgray;
+
+  -webkit-transition: top 3s, height 3s;
+  -moz-transition: top 3s, height 3s;
+  transition: top 3s, height 3s;
+}
+
+.pollen-container p{
+  margin-block-end: 0px !important;
+  margin-block-start: 0px !important;
+  line-height: 1.5em;
+}
+
+.pollen-container table {
+  text-align: center;
+} 
+
+.paragraph-block {
+  font-size: 18px;
+}
+
+.last-issued {
+  margin-top: -15px !important;
+  font-size: 14px;
+  color: #d3d3d361;
+}
+
+
+
+

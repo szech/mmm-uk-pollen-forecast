@@ -1,0 +1,52 @@
+/* shamelessly steal css from metoffice */
+
+
+.pollen-container {
+    /* tone down the colours a bit */
+    --no-data-bg: #606060e8;
+    --low-bg: #71b466e8;
+    --moderate-bg: #f8e71ce8;
+    --high-bg: #ff950ce8;
+    --very-high-bg: #d72921e8;
+    --extreme-bg: #6600e0e8;
+    --black: #000;
+    --white: #fff;
+}
+
+.icon {
+    color: black;
+    display: inline-block;
+    font-style: normal;
+    height: 2.5em;
+    margin: 0 auto;
+    overflow: hidden;
+    text-indent: 0px;
+    white-space: nowrap;
+    width: 2.5em;
+    border-radius: 50%;
+}
+
+        
+
+span[data-category="nr"] {
+            color: var(--white);
+            border-radius: 0;
+            border: solid 1px var(--black);
+}
+span[data-category="l"] {
+    background: var(--low-bg);
+    border: solid 0.8px var(--black);
+}
+span[data-category="m"] {
+    background: var(--moderate-bg);
+    border: solid 0.8px var(--black);
+}
+span[data-category="h"] {
+    background: var(--high-bg);
+    border: solid 0.8px var(--black);
+}
+span[data-category="vh"] {
+    background: var(--very-high-bg);
+    color: var(--white);
+    border: solid 0.8px var(--white);
+}

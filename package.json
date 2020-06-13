@@ -1,0 +1,26 @@
+{
+  "name": "mmm-uk-pollen-forecast",
+  "version": "1.0.0",
+  "description": "A module for MagicMirror<sup>2</sup> that displays pollen data for your area in the UK.",
+  "main": "mmm-uk-pollen-forecast.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "module",
+    "pollen",
+    "count",
+    "allergy",
+    "grass",
+    "tree"
+  ],
+  "author": "szech",
+  "license": "MIT",
+  "dependencies": {
+    "request":  "latest",
+    "cheerio":  "latest",
+    "del":      "latest"
+  }
+}
