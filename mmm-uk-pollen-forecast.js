@@ -4,19 +4,25 @@ Module.register("mmm-uk-pollen-forecast", {
     defaults: {
         updateIntervalHours : 2, // minimum is 0.25
         region: 'se',   // region, required
-        first_display_date: '01-MAR',   // optional
-        last_display_date:  '01-SEP'  // optional
+        first_display_date_DD_MM: '01-03',  // optional, show the calendar between particular days
+                                            // format: DD-MM, e.g. 01-03 ==> display from 1st March 
+        last_display_date_DD_MM:  '01-09'   // optional
+                                            // format: DD-MM, e.g. 01-09 ==> hide after 1st September
+                                            // special cases: '' or 'always' will always show the module 
     },
     
     // Define required scripts.
     getScripts: function() {
-        return ["buffer.js"];
+        return ["buffer.js, moment.js"];
     },
 
 
     start: function() {
-        Log.info(this.config);
         Log.info("Starting module: " + this.name);
+        Log.info(this.name, ' config: ',  this.config);
+
+
+
 
         this.getPollen();
         
@@ -40,10 +46,17 @@ Module.register("mmm-uk-pollen-forecast", {
     },
 
     getPollen: function() {
-        Log.info("mmm-uk-pollen-forecast: Getting allergies.");
-        this.sendSocketNotification("GET_POLLEN_DATA", {
-            config: this.config
-        });
+        self = this;
+        if(self.moduleIsVisible() ==  false) {
+            this.hide();
+            return;
+        } else {    
+            this.show();
+            Log.info("mmm-uk-pollen-forecast: Getting allergies.");
+            this.sendSocketNotification("GET_POLLEN_DATA", {
+                config: this.config
+            });
+        }
     },
 
     socketNotificationReceived: function(notification, payload) {
@@ -87,9 +100,8 @@ Module.register("mmm-uk-pollen-forecast", {
             // add a line break to forecast text
             var forecast = wrapper.getElementsByTagName("p")[0];
             forecast.innerHTML=forecast.childNodes[0].nodeValue.replace("Other allergens", "<br>Other allergens");
-
-
-
+            forecast.innerHTML=forecast.childNodes[0].nodeValue.replace("Other pollen allergens", "<br>Other pollen allergens");
+            
 
         }
 
@@ -99,7 +111,26 @@ Module.register("mmm-uk-pollen-forecast", {
     fetchHtmlAsText: async function (url) {
         const response = await fetch(url);
         return await response.text();
-    }
+    },
+
+
+    moduleIsVisible: function () {
+        self = this;
+        
+        if(self.config.first_display_date_DD_MM == 'always' || self.config.first_display_date_DD_MM == '' ) {
+            return true;
+        }
+        if(self.config.last_display_date_DD_MM == 'always' || self.config.last_display_date_DD_MM == '' ) {
+            return true;
+        }
+        
+        var now = moment();
+        var firstDay = moment(self.config.first_display_date_DD_MM + "-" + now.year().toString(), "DD-MM-YYYY");
+        var lastDay = moment(self.config.last_display_date_DD_MM +  "-" + now.year().toString(), "DD-MM-YYYY");
+
+        return now.isBetween(firstDay, lastDay, 'days', '[]');
+
+    },
 
 
 });

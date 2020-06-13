@@ -12,7 +12,7 @@ Notes:
 - this module maybe useful to anyone who wants to scrape a website for use on a mirror. No iframes here! We parse the target website with cheerio, then dump out the html to a cache file. Then the client-side script picks this up for display. (Is there an XSS vulnerability? Maybe, if the Met Office is hacked.)
 - this module only supports the UK.
 - the module is likely to break if the Met Office website changes.
-- Pull requests, bug reports and feature requests are welcome.
+- Pull requests, bug reports and feature requests [are welcome.](https://github.com/szech/mmm-uk-pollen-forecast) 
 - I am not a js coder, so please don't judge too harshly :)
 
 Thanks to Michael Teeuw for this great platform, and to the other mm modules for inspiration and open source code 
@@ -24,12 +24,9 @@ Thanks to Michael Teeuw for this great platform, and to the other mm modules for
 | --- | --- |
 | `updateIntervalHours` | (optional) Set to desired update interval (in hours), default is `2`. |
 | `region` | your region. required. see below for the possible values. |
+| `first_display_date_DD_MM` | optional. will show the module from this date onwards. format: DD-MM  |
+| `last_display_date_DD_MM` | optional. will hide the module after this date onwards until next year. format: DD-MM. see below for more details |
 
-
-<!-- TODO :)
-| `first_display_date` | optional. will show the module from this date onwards. format: DD-MMM  |
-| `last_display_date` | optional. will hide the module after this date onwards until next year. format: DD-MMM |
--->
 
 
 ## Regions
@@ -55,6 +52,17 @@ pick the 2-letter code that corresponds to your region and use this in the confi
 |  sw  |  South West England  |
 |  se  |  London & South East England  |
 
+## First Display Date & Last Display Date
+
+Since pollen is a seasonal affliction, you can configure when you want the module to be visible using `first_display_date_DD_MM` & `last_display_date_DD_MM` in the config.
+
+The format must be `DD-MM` e.g. `01-04` ==> 1st April.
+If you want it to display all year round, you can use a blank entry `''` or `'always'`.
+
+You can check the general seasonality of pollen with the University of Worcester's [seasonal pollen calendar](
+https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-environment/science-and-the-environment-research/national-pollen-and-aerobiology-research-unit/pollen-calendar.aspx)
+
+
 ## Installation
   1. Clone this repo into your magic mirror `modules` directory. 
   2. cd in there and run `npm install`
@@ -64,25 +72,31 @@ pick the 2-letter code that corresponds to your region and use this in the confi
   5. Profit!
 
 
-try `npm install -g` in step 2 if it doesn't work
-other things to try: 
-- refresh the browser window where the mirror is displayed
-- restart the mm server
-
  **Example config.js entry:**
 ```
  {
     module: 'mmm-uk-pollen-forecast',
     position: 'bottom_center',
     config: {
-        updateIntervalHours : 2,
-        region : se
+        updateIntervalHours : 2,    // update every 2 hrs
+        region : 'se',              // forecast for London & SE England
+        first_display_date_DD_MM: '01-04', // show module from 1st April
+        last_display_date_DD_MM: '01-09'  // hide module after 1st September
 
     }
  },
 ```
 
 
+
+## troubleshooting:
+- try `npm install -g` in step 2 
+- refresh the browser window where the mirror is displayed
+- restart the mm server
+- double check the config.js entry
+- have you configured the module to be hidden?
+- do you have enough antihistamines?
+- avoid alcohol, it tends to make your hayfever symptoms worse :'(
 
 
 
