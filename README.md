@@ -26,6 +26,7 @@ Thanks to Michael Teeuw for this great platform, and to the other mm modules for
 | `region` | your region. required. see below for the possible values. |
 | `first_display_date_DD_MM` | optional. will show the module from this date onwards. format: DD-MM  |
 | `last_display_date_DD_MM` | optional. will hide the module after this date onwards until next year. format: DD-MM. see below for more details |
+| `days_to_show`       | optional. choose how many forecast days to show. range is 0 - 5, where 0 will hide all the icons, 5 is the maximum and the default |
 
 
 

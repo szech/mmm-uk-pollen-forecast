@@ -6,10 +6,12 @@ Module.register("mmm-uk-pollen-forecast", {
         region: 'se',   // region, required
         first_display_date_DD_MM: '01-03',  // optional, show the calendar between particular days
                                             // format: DD-MM, e.g. 01-03 ==> display from 1st March 
-        last_display_date_DD_MM:  '01-09'   // optional
-                                            // format: DD-MM, e.g. 01-09 ==> hide after 1st September
-                                            // special cases: '' or 'always' will always show the module 
-    },
+        last_display_date_DD_MM:  '01-09',   // optional
+                                             // format: DD-MM, e.g. 01-09 ==> hide after 1st September
+                                             // special cases: '' or 'always' will always show the module 
+        days_to_show:   5                  // optional, choose how many forecast days to show. range is 0 - 5, where 
+                                             // 0 ==> no icons, 5 ==> 5 icons. default is 5. min is 0, max is 5.
+                                        },
     
     // Define required scripts.
     getScripts: function() {
