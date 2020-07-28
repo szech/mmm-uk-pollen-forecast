@@ -99,11 +99,9 @@ Module.register("mmm-uk-pollen-forecast", {
             new_header.innerHTML = region_heading.innerHTML;
             region_heading.parentNode.replaceChild(new_header, region_heading);
 
-            // add a line break to forecast text
+            // add line breaks to forecast text
             var forecast = wrapper.getElementsByTagName("p")[0];
-            forecast.innerHTML=forecast.childNodes[0].nodeValue.replace("Other allergens", "<br>Other allergens");
-            forecast.innerHTML=forecast.childNodes[0].nodeValue.replace("Other pollen allergens", "<br>Other pollen allergens");
-            
+            forecast.innerHTML=forecast.childNodes[0].nodeValue.replace(new RegExp('\\. ', 'g'), '. <br>');
 
         }
 
