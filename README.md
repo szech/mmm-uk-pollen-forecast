@@ -7,8 +7,8 @@ British pollen sufferers unite!
 This module scrapes the [Met Office website](https://www.metoffice.gov.uk/weather/warnings-and-advice/seasonal-advice/pollen-forecast) for the pollen forecast for your magic mirror, so you have advance notice of what level of misery you can expect in the coming days. Unfortunately the Met Office do not provide a free or low-cost API for pollen data, so we have to resort to more fragile methods. 
 
 
-
 Notes: 
+
 - this module maybe useful to anyone who wants to scrape a website for use on a mirror. No iframes here! We parse the target website with cheerio, then dump out the html to a cache file. Then the client-side script picks this up for display. (Is there an XSS vulnerability? Maybe, if the Met Office is hacked.)
 - this module only supports the UK.
 - the module is likely to break if the Met Office website changes.
@@ -65,6 +65,7 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
 
 
 ## Installation
+
   1. Clone this repo into your magic mirror `modules` directory. 
   2. cd in there and run `npm install`
   2. Create an entry in your `config.js` file to tell this module where to display on screen.
@@ -82,8 +83,8 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
         updateIntervalHours : 2,    // update every 2 hrs
         region : 'se',              // forecast for London & SE England
         first_display_date_DD_MM: '01-04', // show module from 1st April
-        last_display_date_DD_MM: '01-09'  // hide module after 1st September
-
+        last_display_date_DD_MM: '01-09',  // hide module after 1st September
+        days_to_show: 3             // only show forecast for next 3 days
     }
  },
 ```

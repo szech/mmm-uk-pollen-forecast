@@ -11,7 +11,7 @@ Module.register("mmm-uk-pollen-forecast", {
                                              // special cases: '' or 'always' will always show the module 
         days_to_show:   5                  // optional, choose how many forecast days to show. range is 0 - 5, where 
                                              // 0 ==> no icons, 5 ==> 5 icons. default is 5. min is 0, max is 5.
-                                        },
+    },
     
     // Define required scripts.
     getScripts: function() {
@@ -23,7 +23,13 @@ Module.register("mmm-uk-pollen-forecast", {
         Log.info("Starting module: " + this.name);
         Log.info(this.name, ' config: ',  this.config);
 
-
+        // days to show range
+        if(self.config.days_to_show < 0) {
+            self.config.days_to_show = 0;
+        }
+        if(self.config.days_to_show > 5 ) {
+            self.config.days_to_show = 5;
+        }
 
 
         this.getPollen();
@@ -103,15 +109,40 @@ Module.register("mmm-uk-pollen-forecast", {
             var forecast = wrapper.getElementsByTagName("p")[0];
             forecast.innerHTML=forecast.childNodes[0].nodeValue.replace(new RegExp('\\. ', 'g'), '. <br>');
 
+            // remove forecast icons if required
+            this.fiddleForecastTable(wrapper);
+
         }
 
         return wrapper;
     },
 
+    
     fetchHtmlAsText: async function (url) {
         const response = await fetch(url);
         return await response.text();
     },
+
+
+    fiddleForecastTable: function(wrapper){
+        self = this;
+
+        const days_to_show = self.config.days_to_show;
+
+        if(days_to_show == 5) { // do nothing
+            return;
+        }
+
+        var forecast_th = wrapper.getElementsByTagName("thead")[0].firstElementChild;
+        var forecast_tr = wrapper.getElementsByTagName("tbody")[0].firstElementChild;
+        
+        for(i = days_to_show; i < 5 ; i++) { // remove unwanted days
+            forecast_th.removeChild(forecast_th.lastElementChild);
+            forecast_tr.removeChild(forecast_tr.lastElementChild);
+        }
+
+    },
+
 
 
     moduleIsVisible: function () {
