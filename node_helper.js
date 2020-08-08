@@ -18,7 +18,8 @@ module.exports = NodeHelper.create({
         console.log("payload.config.region:", payload.config.region);
         
         const region = payload.config.region;
-
+        const show_forecast_text = payload.config.show_forecast_text;
+        const show_forecast_last_issued_text = payload.config.show_forecast_last_issued_text;
 
         if(notification === "GET_POLLEN_DATA") {
             
@@ -40,13 +41,21 @@ module.exports = NodeHelper.create({
 
                 const forecast_heading = $('#'+region + " h3.region-heading");
                 const forecast_table = $('#'+region + " table");
-                const forecast_text = $("#"+region+"-paras");
-                const forecast_issued = $('#'+region+" .last-issued");
+                var forecast_text = '';
+                var forecast_issued_text = '';
+
+                if(show_forecast_text == 'true') {
+                    forecast_text = $("#"+region+"-paras");
+                }
+                
+                if(show_forecast_last_issued_text == 'true') {
+                    forecast_issued_text = $('#'+region+" .last-issued");
+                }
                 
                 
                 // ... and write it out into a temp file
-                const html_dump = forecast_heading + forecast_table + forecast_text + forecast_issued;
-                console.log('pollen forecast returned:', html_dump);
+                const html_dump = forecast_heading + forecast_table + forecast_text + forecast_issued_text;
+                // console.log('pollen forecast returned:', html_dump); // uncomment for debugging
                 
                 console.log('Current directory: ', process.cwd());
 

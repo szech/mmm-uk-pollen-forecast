@@ -21,12 +21,13 @@
   line-height: 1.5em;
 }
 
-.pollen-container table {
+.pollen-container table,
+.pollen-container td {
   text-align: center;
 } 
 
 .paragraph-block {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .last-issued {

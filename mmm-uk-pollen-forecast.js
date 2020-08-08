@@ -2,15 +2,18 @@ Module.register("mmm-uk-pollen-forecast", {
 
     // Default module config.
     defaults: {
-        updateIntervalHours : 2, // minimum is 0.25
-        region: 'se',   // region, required
+        update_interval_hours : 2,          // minimum is 0.25
+        region: 'se',                       // region, required
         first_display_date_DD_MM: '01-03',  // optional, show the calendar between particular days
                                             // format: DD-MM, e.g. 01-03 ==> display from 1st March 
-        last_display_date_DD_MM:  '01-09',   // optional
-                                             // format: DD-MM, e.g. 01-09 ==> hide after 1st September
-                                             // special cases: '' or 'always' will always show the module 
-        days_to_show:   5                  // optional, choose how many forecast days to show. range is 0 - 5, where 
-                                             // 0 ==> no icons, 5 ==> 5 icons. default is 5. min is 0, max is 5.
+        last_display_date_DD_MM:  '01-09',  // optional
+                                            // format: DD-MM, e.g. 01-09 ==> hide after 1st September
+                                            // special cases: '' or 'always' will always show the module 
+        days_to_show:   5,                  // optional, choose how many forecast days to show. range is 0 - 5, where 
+                                            // 0 ==> no icons, 5 ==> 5 icons. default is 5. min is 0, max is 5.
+        show_forecast_text: 'true',         // show the forecast text. optional. default is true.
+        show_forecast_last_issued_text: 'true'  // show when the forecast was last issued. optional. default is true.
+ 
     },
     
     // Define required scripts.
@@ -35,13 +38,13 @@ Module.register("mmm-uk-pollen-forecast", {
         this.getPollen();
         
         self = this;
-        if(self.config.updateIntervalHours < 0.25) {
-            self.config.updateIntervalHours = 0.25;
+        if(self.config.update_interval_hours < 0.25) {
+            self.config.update_interval_hours = 0.25;
         }            
         
         setInterval(function() {
             self.getPollen();
-        }, self.config.updateIntervalHours * 3600000 );
+        }, self.config.update_interval_hours * 3600000 );
     },
 
     // Define required scripts.
@@ -106,8 +109,10 @@ Module.register("mmm-uk-pollen-forecast", {
             region_heading.parentNode.replaceChild(new_header, region_heading);
 
             // add line breaks to forecast text
-            var forecast = wrapper.getElementsByTagName("p")[0];
-            forecast.innerHTML=forecast.childNodes[0].nodeValue.replace(new RegExp('\\. ', 'g'), '. <br>');
+            if(self.config.show_forecast_text) {
+                var forecast = wrapper.getElementsByTagName("p")[0];
+                forecast.innerHTML=forecast.childNodes[0].nodeValue.replace(new RegExp('\\. ', 'g'), '. <br>');
+            }
 
             // remove forecast icons if required
             this.fiddleForecastTable(wrapper);

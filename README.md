@@ -22,11 +22,13 @@ Thanks to Michael Teeuw for this great platform, and to the other mm modules for
 ## Config
 | **Option** | **Description** |
 | --- | --- |
-| `updateIntervalHours` | (optional) Set to desired update interval (in hours), default is `2`. |
+| `update_interval_hours` | (optional) Set to desired update interval (in hours), default is `2`. |
 | `region` | your region. required. see below for the possible values. |
 | `first_display_date_DD_MM` | optional. will show the module from this date onwards. format: DD-MM  |
 | `last_display_date_DD_MM` | optional. will hide the module after this date onwards until next year. format: DD-MM. see below for more details |
 | `days_to_show`       | optional. choose how many forecast days to show. range is 0 - 5, where 0 will hide all the icons, 5 is the maximum and the default |
+| `show_forecast_text`     |   optional. choose to show or hide the forecast text. default is  `'true'` (show the text.) set as `'false'` to hide it.   |
+| `show_forecast_last_issued_text`     |   optional. choose to show or hide the forecast text. default is  `'true'` (show the text.) set as `'false'` to hide it.   |
 
 
 
@@ -80,11 +82,13 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
     module: 'mmm-uk-pollen-forecast',
     position: 'bottom_center',
     config: {
-        updateIntervalHours : 2,    // update every 2 hrs
+        update_interval_hours : 2,    // update every 2 hrs
         region : 'se',              // forecast for London & SE England
         first_display_date_DD_MM: '01-04', // show module from 1st April
         last_display_date_DD_MM: '01-09',  // hide module after 1st September
-        days_to_show: 3             // only show forecast for next 3 days
+        days_to_show: 3,             // only show forecast for next 3 days
+        show_forecast_text: 'false'    // hide the forecast text
+        show_forecast_last_issued_text: 'true' // show when forecast was last issued
     }
  },
 ```
@@ -95,7 +99,9 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
 - try `npm install -g` in step 2 
 - refresh the browser window where the mirror is displayed
 - restart the mm server
-- double check the config.js entry
+- double check the config.js entry. 
+  - maybe you need to add quotes around the values
+  - maybe you forgot a comma to end the line 
 - have you configured the module to be hidden?
 - do you have enough antihistamines?
 - avoid alcohol, it tends to make your hayfever symptoms worse :'(
