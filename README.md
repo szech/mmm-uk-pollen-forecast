@@ -103,6 +103,7 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
   - maybe you need to add quotes around the values
   - maybe you forgot a comma to end the line 
 - have you configured the module to be hidden?
+- forecast is too wide? just uncomment and fiddle `max-width` in `pollen-forecast.css`
 - do you have enough antihistamines?
 - avoid alcohol, it tends to make your hayfever symptoms worse :'(
 
