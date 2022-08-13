@@ -7,6 +7,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 
+  
+  /* force max width e.g. if placed in a side column */
+  /* max-width: 400px; */
+  
   font-size: 20px;
   color: lightgray;
 

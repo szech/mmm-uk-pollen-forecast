@@ -62,6 +62,9 @@ Since pollen is a seasonal affliction, you can configure when you want the modul
 The format must be `DD-MM` e.g. `01-04` ==> 1st April.
 If you want it to display all year round, you can use a blank entry `''` or `'always'`.
 
+Note: the Met Office only issues forecasts between mid-March and mid-September.
+The module won't display anything if the forecast is not available on the Met Office website.
+
 You can check the general seasonality of pollen with the University of Worcester's [seasonal pollen calendar](
 https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-environment/science-and-the-environment-research/national-pollen-and-aerobiology-research-unit/pollen-calendar.aspx)
 
@@ -103,6 +106,8 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
   - maybe you need to add quotes around the values
   - maybe you forgot a comma to end the line 
 - have you configured the module to be hidden?
+- the module won't show anything outside of pollen season because the Met Office doesn't issue any forecasts.
+- forecast is too wide? just uncomment and fiddle `max-width` in `pollen-forecast.css`
 - do you have enough antihistamines?
 - avoid alcohol, it tends to make your hayfever symptoms worse :'(
 
