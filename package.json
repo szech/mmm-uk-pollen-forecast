@@ -21,6 +21,6 @@
   "dependencies": {
     "request":  "latest",
     "cheerio":  "latest",
-    "del":      "latest"
+    "del":      "6.1.1"
   }
 }
