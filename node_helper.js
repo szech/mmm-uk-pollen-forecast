@@ -1,4 +1,4 @@
-const request = require('request');
+const request = require('postman-request');
 const NodeHelper = require("node_helper");
 const cheerio = require("cheerio");
 const fs = require('fs');
@@ -23,19 +23,29 @@ module.exports = NodeHelper.create({
 
         if(notification === "GET_POLLEN_DATA") {
             
-            const url = "https://www.metoffice.gov.uk/weather/warnings-and-advice/seasonal-advice/pollen-forecast";
+            const url = "https://weather.metoffice.gov.uk/warnings-and-advice/seasonal-advice/pollen-forecast";
                         
-            console.log('-> uk-pollen-forecast request');
+            console.log('-> uk-pollen-forecast request -> ' + url);
             
             request({
                 method: 'GET',
-                url: url
+                url: url,
+                secureProtocol: 'TLSv1_2_method',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1'
+                },
             }, (err, res, body) => {
             
                 if (err) return console.error(err);
+
+                // console.log('pollen forecast request body:', body); // uncomment for debugging
                 
                 // parse
                 const $ = cheerio.load(body);
+
+
+                // console.log('cheerio body:', body); // uncomment for debugging
+
                 
                 // we just need to extract the html for the supplied region...
 

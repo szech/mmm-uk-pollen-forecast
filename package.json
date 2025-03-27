@@ -19,7 +19,7 @@
   "author": "szech",
   "license": "MIT",
   "dependencies": {
-    "request":  "latest",
+    "postman-request":  "latest",
     "cheerio":  "latest",
     "del":      "6.1.1"
   }

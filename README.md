@@ -83,15 +83,15 @@ https://www.worcester.ac.uk/about/academic-schools/school-of-science-and-the-env
 ```
  {
     module: 'mmm-uk-pollen-forecast',
-    position: 'bottom_center',
+    position: 'bottom_left',
     config: {
-        update_interval_hours : 2,    // update every 2 hrs
-        region : 'se',              // forecast for London & SE England
-        first_display_date_DD_MM: '01-04', // show module from 1st April
-        last_display_date_DD_MM: '01-09',  // hide module after 1st September
-        days_to_show: 3,             // only show forecast for next 3 days
-        show_forecast_text: 'false'    // hide the forecast text
-        show_forecast_last_issued_text: 'true' // show when forecast was last issued
+        update_interval_hours : 2,              // update every 2 hrs
+        region : 'se',                          // forecast for London & SE England
+        first_display_date_DD_MM: '01-04',      // show module from 1st April
+        last_display_date_DD_MM: '01-09',       // hide module after 1st September
+        days_to_show: 3,                        // only show forecast for next 3 days
+        show_forecast_text: 'true'              // show the forecast text
+        show_forecast_last_issued_text: 'true'  // hide when forecast was last issued
     }
  },
 ```

@@ -110,8 +110,10 @@ Module.register("mmm-uk-pollen-forecast", {
 
             // add line breaks to forecast text
             if(self.config.show_forecast_text) {
-                var forecast = wrapper.getElementsByTagName("p")[0];
-                forecast.innerHTML=forecast.childNodes[0].nodeValue.replace(new RegExp('\\. ', 'g'), '. <br>');
+                var forecast = wrapper?.getElementsByTagName("p")?.[0] || null;
+                if (forecast != null) {
+                    forecast.innerHTML=forecast.childNodes[0].nodeValue.replace(new RegExp('\\. ', 'g'), '. <br>');
+                }
             }
 
             // remove forecast icons if required
